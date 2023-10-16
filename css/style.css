@@ -1,0 +1,443 @@
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@400;700&family=Goudy+Bookletter+1911&family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* font-family: 'Gentium Book Plus', serif; */
+/* font-family: 'Goudy Bookletter 1911', serif; */
+/* font-family: 'Roboto', sans-serif; */
+
+:root {
+  --transition-time: 2.5s;
+  --bg-width: 2844px;
+  --bg-move-pixels: calc(var(--bg-width) - 100vw);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  white-space: nowrap;
+  user-select: none;
+}
+
+html {
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+body {
+  background-image: url("../img/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-attachment: fixed;
+  color: whitesmoke;
+  transition: background-position 3.5s ease;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.bg-highlight {
+  z-index: -10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+/* first page */
+.first-page {
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 10rem;
+  transform: translateY(-50%);
+  display: grid;
+  align-content: center;
+  justify-content: start;
+  text-shadow: 0 0 5px #222;
+  user-select: none;
+  transition: left 2.5s ease, opacity 2.5s ease;
+}
+
+.first-page .first-page-header h1 {
+  font-size: 4rem;
+  font-family: "Gentium Book Plus", serif;
+}
+
+.general-button {
+  font-family: inherit;
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: rgba(30, 30, 30, 0.8);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.general-button:hover,
+.general-button:active,
+.general-button:focus {
+  background-color: rgba(230, 230, 230, 1);
+  color: #222;
+}
+
+.first-page .first-page-enter-button {
+  width: 50%;
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: auto auto;
+  place-content: center;
+  gap: 5px;
+}
+
+.first-page .first-page-enter-button span {
+  font-size: 1.9rem;
+}
+
+/* second page */
+.second-page {
+  width: 100%;
+  position: relative;
+  right: calc(var(--bg-move-pixels) * (-1));
+  opacity: 0;
+  transition: right 2.5s ease, opacity 2.5s ease;
+  transition-delay: 1s;
+}
+
+.second-page .new-book-menu {
+  height: 100vh;
+  width: 333px;
+  position: fixed;
+  right: -334px;
+  top: 0;
+  transition: right 0.2s ease-in-out, opacity 0.5s ease 0.5s;
+  z-index: 1;
+  box-shadow: -5px 0 15px #222222bb;
+}
+
+.new-book-menu .show-menu-button {
+  margin: 2rem 0 2rem;
+  width: 200px;
+  padding: 0.5rem 0 0.5rem 0.9rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-top-left-radius: 120px;
+  border-bottom-left-radius: 60px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  box-shadow: -2px 0 8px #22222254;
+  position: absolute;
+  left: -200px;
+  top: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding 0.2s ease, background-color 0.1s ease, color 0.1s ease;
+}
+
+.new-book-menu .show-menu-button span {
+  font-size: 1.9rem;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.show-menu-button .left-arrow {
+  opacity: 1;
+}
+
+.show-menu-button .right-arrow {
+  opacity: 0;
+}
+
+.new-book-menu #show-menu:checked + .show-menu-button {
+  padding-left: 0;
+  padding-right: 0.9rem;
+
+  background-color: #fff;
+  color: #222;
+}
+
+.new-book-menu #show-menu:checked + .show-menu-button .left-arrow {
+  opacity: 0;
+}
+
+.new-book-menu #show-menu:checked + .show-menu-button .right-arrow {
+  opacity: 1;
+}
+
+.new-book-menu .new-book-form {
+  background-color: rgb(10, 10, 10);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid whitesmoke;
+  padding: 2rem;
+  padding-top: 5rem;
+  gap: 2rem;
+}
+
+.new-book-form .form-header h2 {
+  font-size: 2rem;
+}
+
+.new-book-form .form-header .form-description {
+  font-size: 1.1rem;
+}
+
+.new-book-form .text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-field label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.new-book-form .text-field input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #222;
+  border-radius: 5px;
+  border: none;
+}
+
+.new-book-form .text-field input::placeholder {
+  color: #aaa;
+}
+
+.new-book-form .text-field input:focus::placeholder {
+  opacity: 0;
+}
+
+.new-book-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 5px;
+  border: 2px solid whitesmoke;
+  border-radius: 3px;
+  position: relative;
+  top: 3px;
+  left: 5px;
+  transition: background-color 0.1s ease;
+}
+
+.new-book-form input[type="checkbox"]:hover {
+  background-color: rgba(245, 245, 245, 0.3);
+}
+
+.new-book-form input[type="checkbox"]:checked {
+  background-color: whitesmoke;
+}
+
+.new-book-form input[type="checkbox"]:checked::after {
+  content: "✔️";
+  font-size: 1.1rem;
+  color: #222;
+  position: absolute;
+  top: -2px;
+  left: 0;
+}
+
+.new-book-form button {
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* library styles */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  transition: padding-right 0.2s ease;
+}
+
+.main-container .header {
+  font-size: 3rem;
+  font-family: "Gentium Book Plus", serif;
+}
+
+.main-container .header h1 {
+  text-shadow: 0 0 2px #fff, 0 2px 15px #222;
+}
+
+.main-container .library {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid whitesmoke;
+  width: 90%;
+  height: 100%;
+  padding: 5rem 1.5rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: auto;
+  gap: 3rem;
+  box-shadow: 0 0 15px #222 inset;
+}
+
+.main-container .library .empty-message {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-family: "Goudy Bookletter 1911", serif;
+}
+
+.library .book-card {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: rgba(235, 235, 230, 1);
+  color: #222;
+  border-radius: 5px;
+  border: 1px solid whitesmoke;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.library .book-card .info-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.library .book-card .info-row {
+  padding: 10px 0;
+}
+
+.library .book-card .info-row .book-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.library .book-card .info-row .book-author {
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.library .book-card .info-row:not(:first-child) {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.library .book-card .info-row:not(:nth-child(3)) {
+  border-bottom: 1px solid #222;
+}
+
+.library .book-card .book-card-row:nth-child(3) {
+  margin-bottom: auto;
+}
+
+.library .book-card .button-row {
+  margin-top: 0.5rem;
+}
+
+.library .book-card .button-row .button {
+  width: 100%;
+  padding: 1px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-items: start;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  height: 2.5rem;
+
+  transition: all 0.1s ease;
+  white-space: nowrap;
+}
+
+.library .book-card .button-row .button span {
+  text-align: left;
+  transition: all 0.1s ease;
+  padding: 0.4rem;
+}
+
+.library .book-card .button-row .button span:first-child {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.library .book-card .button-row .button span:last-child {
+  border-left: 1px solid rgba(230, 230, 230, 0.5);
+}
+
+.library .book-card .button-row .book-card-read-button {
+  background-color: transparent;
+  margin-top: 2rem;
+  color: #1c1917;
+  border: 1px solid #1c1917;
+}
+
+.library .book-card .button-row .book-card-remove-button {
+  background-color: #9f1239;
+}
+
+.library .book-card .button-row .book-card-read-button .button-done {
+  display: none;
+}
+
+.library .book-card .button-row input:checked + label.book-card-read-button {
+  background-color: #1c1917;
+  color: #fff;
+}
+
+.library
+  .book-card
+  .button-row
+  input:not(:checked)
+  + label.book-card-read-button:hover,
+.library
+  .book-card
+  .button-row
+  input:not(:checked)
+  + label.book-card-read-button:focus {
+  background-color: #1c191711;
+}
+
+.library
+  .book-card
+  .button-row
+  input:checked
+  + label.book-card-read-button
+  .button-done {
+  display: block;
+}
+
+.library .book-card .button-row .book-card-remove-button:hover {
+  background-color: #881337;
+}
