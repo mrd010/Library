@@ -48,6 +48,7 @@ Library.prototype.addBook = function (book) {
 
 Library.prototype.removeBook = function (book) {
   this.books.splice(this.books.indexOf(book), 1);
+  this.books.forEach((item, index) => (item.indexInLibrary = index));
 };
 
 Library.prototype.readBook = function (book, readStatus = true) {
