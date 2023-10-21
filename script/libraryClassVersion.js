@@ -62,6 +62,7 @@ class Library {
 
   static removeBook(book) {
     this.#books.splice(this.#books.indexOf(book), 1);
+    this.#books.forEach((item, index) => (item.IndexInLibrary = index));
   }
 
   static readBook(book, readStatus = true) {
@@ -161,12 +162,17 @@ class DisplayController {
 
   static #toggleRead() {
     const index = this.getAttribute("data-index");
+    // console.log(index);
+    // console.log(Library.Books);
     Library.Books[index].readBook(this.checked);
   }
 
   static #removeBook() {
     const index = this.getAttribute("data-index");
+    console.log(index);
+
     Library.removeBook(Library.Books[index]);
+    console.log(Library.Books);
     DisplayController.#createDOMLibrary();
   }
 
